@@ -5,26 +5,22 @@
   <script src="scripts/current_date.js"></script>
   <link rel="stylesheet" type="text/css" href="styles.css">
   <script>
-    // Функція для додавання нового відгука
     function addReview() {
       var name = document.getElementById('name').value; 
       var comment = document.getElementById('comment').value;
       
-      // Перевірка, чи заповнені поля "Ім'я" та "Коментар"
       if (name.trim() === '' || comment.trim() === '') {
         alert('Будь ласка, заповніть всі поля!');
         return;
       }
       
-      var reviewList = document.getElementById('review-list'); // Отримання елементу, в якому відображаються відгуки
+      var reviewList = document.getElementById('review-list');
       
-      // Створення нового елементу li для відгука
       var reviewItem = document.createElement('li');
       reviewItem.innerHTML = '<strong>' + name + ':</strong> ' + comment;
       
       reviewList.appendChild(reviewItem); 
-      
-      // Очищення полів "Ім'я" та "Коментар"
+
       document.getElementById('name').value = '';
       document.getElementById('comment').value = '';
     }
