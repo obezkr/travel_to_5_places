@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Система відгуків</title>
+  <script>
+    // Функція для додавання нового відгука
+    function addReview() {
+      var name = document.getElementById('name').value; // Отримання значення поля "Ім'я"
+      var comment = document.getElementById('comment').value; // Отримання значення поля "Коментар"
+      
+      // Перевірка, чи заповнені поля "Ім'я" та "Коментар"
+      if (name.trim() === '' || comment.trim() === '') {
+        alert('Будь ласка, заповніть всі поля!');
+        return;
+      }
+      
+      var reviewList = document.getElementById('review-list'); // Отримання елементу, в якому відображаються відгуки
+      
+      // Створення нового елементу li для відгука
+      var reviewItem = document.createElement('li');
+      reviewItem.innerHTML = '<strong>' + name + ':</strong> ' + comment;
+      
+      reviewList.appendChild(reviewItem); // Додавання нового відгука до списку відгуків
+      
+      // Очищення полів "Ім'я" та "Коментар"
+      document.getElementById('name').value = '';
+      document.getElementById('comment').value = '';
+    }
+  </script>
+</head>
+<body>
+  <h1>Система відгуків</h1>
+  
+  <form>
+    <label for="name">Ім'я:</label>
+    <input type="text" id="name" required><br>
+    
+    <label for="comment">Коментар:</label>
+    <textarea id="comment" required></textarea><br>
+    
+    <button type="button" onclick="addReview()">Додати відгук</button>
+  </form>
+  
+  <ul id="review-list"></ul>
+</body>
+</html>
