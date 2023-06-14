@@ -2,11 +2,13 @@
 <html>
 <head>
   <title>Система відгуків</title>
+  <script src="scripts/current_date.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
   <script>
     // Функція для додавання нового відгука
     function addReview() {
-      var name = document.getElementById('name').value; // Отримання значення поля "Ім'я"
-      var comment = document.getElementById('comment').value; // Отримання значення поля "Коментар"
+      var name = document.getElementById('name').value; 
+      var comment = document.getElementById('comment').value;
       
       // Перевірка, чи заповнені поля "Ім'я" та "Коментар"
       if (name.trim() === '' || comment.trim() === '') {
@@ -20,7 +22,7 @@
       var reviewItem = document.createElement('li');
       reviewItem.innerHTML = '<strong>' + name + ':</strong> ' + comment;
       
-      reviewList.appendChild(reviewItem); // Додавання нового відгука до списку відгуків
+      reviewList.appendChild(reviewItem); 
       
       // Очищення полів "Ім'я" та "Коментар"
       document.getElementById('name').value = '';
@@ -28,7 +30,19 @@
     }
   </script>
 </head>
-<body>
+<body onload="displayCurrentDate()">
+	<header>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="destinations.html">Destinations</a></li>
+				<li><a href="reviews.html">Reviews</a></li>
+				<li><a href="about_us.html">About Us</a></li>
+				<li><span id="current-date"></span></li>
+			</ul>
+		</nav>
+	</header>
+<main>
   <h1>Система відгуків</h1>
   
   <form>
@@ -42,5 +56,9 @@
   </form>
   
   <ul id="review-list"></ul>
+</main>
+	<footer>
+		<p>&copy; 2023 Travel To 5 Places. All rights reserved.</p>
+	</footer>
 </body>
 </html>
