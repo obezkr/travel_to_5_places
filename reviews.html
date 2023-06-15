@@ -5,25 +5,46 @@
   <meta charset="UTF-8">
   <script charset="UTF-8" src="scripts/current_date.js"></script>
   <link rel="stylesheet" type="text/css" href="styles.css">
-  <script charset="UTF-8">
+  <script>
+
     function addReview() {
       var name = document.getElementById('name').value; 
       var comment = document.getElementById('comment').value;
       
+
       if (name.trim() === '' || comment.trim() === '') {
-        alert('Будь ласка, заповніть всі поля.');
+        alert('Будь ласка, заповніть всі поля!');
         return;
       }
       
-      var reviewList = document.getElementById('review-list');
-      
-      var reviewItem = document.createElement('li');
-      reviewItem.innerHTML = '<strong>' + name + ':</strong> ' + comment;
-      
-      reviewList.appendChild(reviewItem); 
 
-      document.getElementById('name').value = '';
-      document.getElementById('comment').value = '';
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'scripts/save_reviews.js', true); 
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          document.getElementById('name').value = '';
+          document.getElementById('comment').value = '';
+          
+
+          getReviews();
+        }
+      };
+      
+
+      xhr.send('name=' + encodeURIComponent(name) + '&comment=' + encodeURIComponent(comment));
+    }
+    
+    function getReviews() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'scripts/get_reviews.js', true); 
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var reviewList = document.getElementById('review-list');
+          reviewList.innerHTML = xhr.responseText; 
+        }
+      };
+      xhr.send();
     }
   </script>
 </head>
@@ -40,7 +61,7 @@
 		</nav>
 	</header>
 <main>
-  <h1>Reviews</h1>
+  <h1>Система відгуків</h1>
   
   <form>
     <label for="name">Ім'я:</label>
