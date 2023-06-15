@@ -13,7 +13,7 @@
       
 
       if (name.trim() === '' || comment.trim() === '') {
-        alert('Будь ласка, заповніть всі поля!');
+        alert('Fill all fields.');
         return;
       }
       
@@ -61,16 +61,16 @@
 		</nav>
 	</header>
 <main>
-  <h1>Система відгуків</h1>
+  <h1>Reviews</h1>
   
   <form>
-    <label for="name">Ім'я:</label>
+    <label for="name">Name:</label>
     <input type="text" id="name" required><br>
     
-    <label for="comment">Коментар:</label>
+    <label for="comment">Comment:</label>
     <textarea id="comment" required></textarea><br>
     
-    <button type="button" onclick="addReview()">Додати відгук</button>
+    <button type="button" onclick="addReview()">Add review</button>
   </form>
   
   <ul id="review-list"></ul>
