@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script charset="UTF-8" src="scripts/script.js"></script>
+	<script charset="UTF-8" src="scripts/current_date.js"></script>
+	<meta charset="UTF-8">
+	<title>About Us</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Function to fetch current time via AJAX
+      function getCurrentTime() {
+        $.get('/get_time', function(response) {
+          $('#current-time').text(response.time);
+        });
+      }
+
+      // Fetch initial time
+      getCurrentTime();
+
+      // Update time every 1 seconds (adjust the interval as desired)
+      setInterval(getCurrentTime, 1000);
+    });
+  </script>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body onload="displayCurrentDate()">
+	<header>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="destinations.html">Destinations</a></li>
+				<li><a href="reviews.html">Reviews</a></li>
+				<li><a href="about_us.html">About Us</a></li>
+				<li><span id="current-date"></span></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<p>We are small agency that provides travels only to 5 places, because we are out of budget.</p>
+		<p>Current Time: <span id="current-time"></span></p>
+	</main>
+
+	<footer>
+		<p>&copy; 2023 Travel To 5 Places. All rights reserved.</p>
+	</footer>
+</body>
+</html>

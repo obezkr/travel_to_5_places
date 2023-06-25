@@ -3,7 +3,7 @@ const querystring = require('querystring');
 
 
 function saveReview(reviewData) {
-  // Read the reviews file
+
   fs.readFile('reviews.txt', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
@@ -40,3 +40,4 @@ process.stdin.on('end', () => {
   const reviewData = querystring.parse(requestBody);
   saveReview(reviewData);
 });
+
